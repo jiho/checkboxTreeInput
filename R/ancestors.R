@@ -59,3 +59,9 @@ children <- function(id, tree, n=Inf) {
   # and get ancestors... which are now children
   ancestors(id=id, tree=tree, n=n)
 }
+
+# Extract the roots of a tree (items with no parent)
+roots <- function(tree) {
+  idx <- which(is.na(tree$parent_id))
+  return(tree$id[idx])
+}
