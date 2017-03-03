@@ -60,8 +60,14 @@ children <- function(id, tree, n=Inf) {
   ancestors(id=id, tree=tree, n=n)
 }
 
+# Test whether a given tree element has children
+has_children <- function(id, tree) {
+  length(children(id, tree, 1)) > 0
+}
+
 # Extract the roots of a tree (items with no parent)
 roots <- function(tree) {
   idx <- which(is.na(tree$parent_id))
   return(tree$id[idx])
 }
+
