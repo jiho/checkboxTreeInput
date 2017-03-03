@@ -14,7 +14,7 @@ children(id, tree, n = Inf)
 \item{n}{number of levels to look down; n=1 gives the direct children, n=2 gives grand children (i.e. children of all children), etc.}
 }
 \value{
-A vector of ids of the focus node and its children.
+A vector of ids of the children of the focus node(s).
 }
 \description{
 Get the children of a node
@@ -23,4 +23,5 @@ Get the children of a node
 tree <- data.frame(id=c(1, 2, 3, 4), parent_id=c(NA, 1, 2, 2))
 children(1, tree)
 children(1, tree, n=1)
+children(c(2,3), tree)
 }

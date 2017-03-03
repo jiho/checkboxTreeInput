@@ -14,7 +14,7 @@ ancestors(id, tree, n = Inf)
 \item{n}{number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.}
 }
 \value{
-A vector of ids of the focus node and its ancestors.
+A vector of ids of the ancestors of the focus node(s).
 }
 \description{
 Get the ancestors of a node
@@ -23,4 +23,5 @@ Get the ancestors of a node
 tree <- data.frame(id=c(1, 2, 3, 4), parent_id=c(NA, 1, 2, 2))
 ancestors(3, tree)
 ancestors(3, tree, n=1)
+ancestors(c(1,4), tree)
 }
