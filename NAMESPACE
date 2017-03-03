@@ -2,4 +2,3 @@
 
 export(ancestors)
 export(children)
-export(hello)
