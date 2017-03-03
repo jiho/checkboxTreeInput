@@ -4,7 +4,7 @@
 #' @param tree tree data.frame, with columns `id` and `parent_id` at least
 #' @param n number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.
 #'
-#' @return A vector of ids of the focus node and its ancestors.
+#' @return A vector of ids of the ancestors of the focus node(s).
 #'
 #' @export
 #'
@@ -12,6 +12,7 @@
 #' tree <- data.frame(id=c(1, 2, 3, 4), parent_id=c(NA, 1, 2, 2))
 #' ancestors(3, tree)
 #' ancestors(3, tree, n=1)
+#' ancestors(c(1,4), tree)
 ancestors <- function(id, tree, n=Inf) {
   # checks
   all_ids <- c(tree$id, tree$parent_id)
@@ -25,12 +26,16 @@ ancestors <- function(id, tree, n=Inf) {
   count <- -1
   while ( !all(is.na(parent)) & count < n) {
     # add the ancestors
-    ancestors <- c(parent, ancestors)
+    ancestors <- c(ancestors, parent)
     # the new parents are the parents of the current parents (ouch...)
-    parent <- tree$parent_id[which(tree$id %in% parent)]
+    parent <- tree$parent_id[tree$id %in% parent]
     count <- count + 1
   }
-  return(unique(ancestors))
+  # remove the original ids
+  ancestors <- ancestors[-c(1, length(id))]
+  # remove NAs (roots) and duplicates
+  ancestors <- unique(na.omit(ancestors))
+  return(ancestors)
 }
 
 #' Get the children of a node
@@ -38,7 +43,7 @@ ancestors <- function(id, tree, n=Inf) {
 #' @inheritParams ancestors
 #' @param n number of levels to look down; n=1 gives the direct children, n=2 gives grand children (i.e. children of all children), etc.
 #'
-#' @return A vector of ids of the focus node and its children.
+#' @return A vector of ids of the children of the focus node(s).
 #'
 #' @export
 #'
@@ -46,10 +51,11 @@ ancestors <- function(id, tree, n=Inf) {
 #' tree <- data.frame(id=c(1, 2, 3, 4), parent_id=c(NA, 1, 2, 2))
 #' children(1, tree)
 #' children(1, tree, n=1)
+#' children(c(2,3), tree)
 children <- function(id, tree, n=Inf) {
   # invert parents and children
   idx <- match(c("id", "parent_id"), names(tree))
   names(tree)[idx] <- c("parent_id", "id")
   # and get ancestors... which are now children
-  rev(ancestors(id=id, tree=tree, n=n))
+  ancestors(id=id, tree=tree, n=n)
 }
