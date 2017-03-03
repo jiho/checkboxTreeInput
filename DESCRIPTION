@@ -1,0 +1,15 @@
+Package: checkboxTreeInput
+Type: Package
+Title: A Tree-like Input with Checkboxes for Shiny Apps
+Version: 0.1.0
+Authors@R: person("Jean-Olivier", "Irisson", email="irisson@normalesup.org", role=c("aut", "cre")) 
+Description: Implements a tree-like input for shiny, with collapsible
+    nodes and checkboxes to select individual elements.
+URL: https://github.com/jiho/checkboxTreeInput
+BugReports: https://github.com/jiho/checkboxTreeInput/issues/
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny
+RoxygenNote: 6.0.1
