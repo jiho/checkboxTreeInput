@@ -8,7 +8,8 @@ ui <- function(request) {
     sidebarLayout(
       sidebarPanel(
         checkboxGroupInput("group", label="checkboxGroup selector", choices=1:6, selected=1:3),
-        checkboxTreeInput("tree", label="checkboxTree selector", tree=tree, selected=c(1, 6), opened=1)
+        checkboxTreeInput("tree", label="checkboxTree selector", tree=tree, selected=c(1, 6), opened=1),
+        bookmarkButton()
        ),
       mainPanel(
         h2("checkboxGroup"),
@@ -24,5 +25,5 @@ server <- function(input, output, session) {
   output$group <- renderPrint(input$group)
   output$tree <- renderPrint(input$tree)
 }
-
+enableBookmarking(store="url")
 shinyApp(ui, server)

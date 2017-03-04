@@ -28,7 +28,8 @@
 #' shinyApp(ui, server)
 #' }
 checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=NULL) {
-  # TODO handle restoreInput based on how it looks in checkboxGroupInput
+  # restore state from a bookmarked state
+  selected <- restoreInput(id=inputId, default=selected)
 
   # check input
   wrong_ids <- setdiff(selected, tree$id)
