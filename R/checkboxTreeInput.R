@@ -54,7 +54,7 @@ checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=N
   # open all parents of selected or opened nodes
   to_open <- c(tree$id[tree$selected], opened)
   if (length(to_open) > 0 ) {
-    to_open <- c(ancestors(to_open, tree), to_open)
+    to_open <- c(ancestors(to_open, tree), opened)
     tree$opened[tree$id %in% to_open] <- TRUE
   }
 
