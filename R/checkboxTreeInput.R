@@ -50,11 +50,17 @@ checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=N
   }
 
   # Create the output list
-  tags$div(id=inputId, class="shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
-    shiny:::controlLabel(inputId, label),
-    tags$ul(
-      # iterate from the roots
-      lapply(roots(tree), tree_li, tree=tree, inputId=inputId)
+  list(
+    shiny::singleton(tags$head(
+      initResourcePath(),
+      tags$link(rel="stylesheet", type="text/css", href="checkboxTreeInput.css")
+    )),
+    tags$div(id=inputId, class="shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
+      shiny:::controlLabel(inputId, label),
+      tags$ul(
+        # iterate from the roots
+        lapply(roots(tree), tree_li, tree=tree, inputId=inputId)
+      )
     )
   )
 }
