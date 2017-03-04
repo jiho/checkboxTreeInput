@@ -62,20 +62,21 @@ checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=N
     tree$name <- tree$id
   }
 
-  # Create the output list
-  list(
-    shiny::singleton(shiny::tags$head(
-      initResourcePath(),
-      shiny::tags$link(rel="stylesheet", type="text/css", href="checkboxTreeInput.css")
-    )),
-    shiny::tags$div(id=inputId, class="shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
-      shiny:::controlLabel(inputId, label),
-      shiny::tags$ul(
-        # iterate from the roots
-        lapply(roots(tree), tree_li, tree=tree, inputId=inputId)
-      )
+  # Add custom css as a dependency
+  shiny::addResourcePath(prefix="checkboxTreeInput", directoryPath=system.file("www", package="checkboxTreeInput"))
+  deps <- htmltools::htmlDependency("checkboxTreeInput", "0.1.0", c(href = "checkboxTreeInput"), stylesheet = "checkboxTreeInput.css")
+
+  # Create the input tag
+  inputTag <- shiny::tags$div(
+    id=inputId, class="form-group shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
+    shiny:::controlLabel(inputId, label),
+    shiny::tags$ul(
+      # iterate from the roots
+      lapply(roots(tree), tree_li, tree=tree, inputId=inputId)
     )
   )
+
+  htmltools::attachDependencies(inputTag, deps)
 }
 
 # Create a checkboxInput
