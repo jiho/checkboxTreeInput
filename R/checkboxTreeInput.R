@@ -4,7 +4,7 @@
 #' @param label Display label for the control, or \code{NULL} for no label.
 #' @param tree data.frame defining a tree, with columns \code{id} and \code{parent_id} at least.
 #' @param selected The nodes that should be initially selected, if any. All selected nodes (and their ancestors) will also be opened, to be visible.
-#' @param selected The nodes that should be initially opened, if any. All ancestor nodes will also be opened.
+#' @param opened The nodes that should be initially opened, if any. All ancestor nodes will also be opened.
 #'
 #' @return A list of HTML elements that can be added to a UI definition.
 #'
@@ -14,7 +14,7 @@
 #' checkboxTreeInput("foo", "bar", tree=tree)
 #' checkboxTreeInput("foo", "bar", tree=tree, selected=1)
 #' checkboxTreeInput("foo", "bar", tree=tree, )
-checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=NULL, ...) {
+checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=NULL) {
   # TODO handle restoreInput based on how it looks in checkboxGroupInput
 
   # check input
