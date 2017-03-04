@@ -10,10 +10,23 @@
 #'
 #' @export
 #' @examples
-#' tree <- data.frame(id=1:6, parent_id=c(NA, 1, 2, 2, 1, NA))
+#' tree <- data.frame(id=1:3, parent_id=c(NA, 1, 2))
 #' checkboxTreeInput("foo", "bar", tree=tree)
-#' checkboxTreeInput("foo", "bar", tree=tree, selected=1)
-#' checkboxTreeInput("foo", "bar", tree=tree, )
+#' checkboxTreeInput("foo", "bar", tree=tree, selected=3)
+#' if (interactive()) {
+#' tree <- data.frame(id=1:6, parent_id=c(NA, 1, 2, 2, NA, 1))
+#' ui <- fluidPage(
+#'   checkboxTreeInput(inputId="tree", label="Tree selector",
+#'     tree=tree, selected=c(1, 6), opened=1
+#'   ),
+#'   verbatimTextOutput("selected")
+#' )
+#' server <- function(input, output, session) {
+#'   output$selected <- renderPrint( input$tree )
+#' }
+#' shinyApp(ui, server)
+#' }
+
 checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=NULL) {
   # TODO handle restoreInput based on how it looks in checkboxGroupInput
 
