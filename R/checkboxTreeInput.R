@@ -51,13 +51,13 @@ checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=N
 
   # Create the output list
   list(
-    shiny::singleton(tags$head(
+    shiny::singleton(shiny::tags$head(
       initResourcePath(),
-      tags$link(rel="stylesheet", type="text/css", href="checkboxTreeInput.css")
+      shiny::tags$link(rel="stylesheet", type="text/css", href="checkboxTreeInput.css")
     )),
-    tags$div(id=inputId, class="shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
+    shiny::tags$div(id=inputId, class="shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
       shiny:::controlLabel(inputId, label),
-      tags$ul(
+      shiny::tags$ul(
         # iterate from the roots
         lapply(roots(tree), tree_li, tree=tree, inputId=inputId)
       )
@@ -87,15 +87,15 @@ tree_li <- function(id, tree, inputId) {
   childs <- children(id, tree, n=1)
   x <- tree[tree$id == id,]
   if (length(childs)>0) {
-    out <- tags$li(
-      tags$a(`data-toggle`="collapse", href=paste0("#checkboxTreeCollapse_", id), class=paste("toggle", if(!x$opened) {"collapsed"})),
+    out <- shiny::tags$li(
+      shiny::tags$a(`data-toggle`="collapse", href=paste0("#checkboxTreeCollapse_", id), class=paste("toggle", if(!x$opened) {"collapsed"})),
       treeCheckboxInput(x, inputId),
-      tags$ul(class=paste("collapse", if(x$opened) {"in"}), id=paste0("checkboxTreeCollapse_", id),
+      shiny::tags$ul(class=paste("collapse", if(x$opened) {"in"}), id=paste0("checkboxTreeCollapse_", id),
         lapply(childs, tree_li, tree=tree, inputId=inputId)
       )
     )
   } else {
-    out <- tags$li(
+    out <- shiny::tags$li(
       treeCheckboxInput(x, inputId)
     )
   }

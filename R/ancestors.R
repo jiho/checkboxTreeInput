@@ -34,7 +34,7 @@ ancestors <- function(id, tree, n=Inf) {
   # remove the original ids
   ancestors <- ancestors[-c(1, length(id))]
   # remove NAs (roots) and duplicates
-  ancestors <- unique(na.omit(ancestors))
+  ancestors <- unique(stats::na.omit(ancestors))
   return(ancestors)
 }
 
