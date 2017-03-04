@@ -9,6 +9,7 @@
 #' @return A list of HTML elements that can be added to a UI definition.
 #'
 #' @export
+#'
 #' @examples
 #' tree <- data.frame(id=1:3, parent_id=c(NA, 1, 2))
 #' checkboxTreeInput("foo", "bar", tree=tree)
@@ -26,7 +27,6 @@
 #' }
 #' shinyApp(ui, server)
 #' }
-
 checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=NULL) {
   # TODO handle restoreInput based on how it looks in checkboxGroupInput
 
