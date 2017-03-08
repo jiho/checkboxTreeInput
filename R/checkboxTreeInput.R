@@ -2,7 +2,7 @@
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or \code{NULL} for no label.
-#' @param tree data.frame defining a tree, with columns \code{id} and \code{parent_id} at least.
+#' @param tree a \code{\link[=as.treedf]{treedf}} data.frame defining a tree, with columns \code{id} and \code{parent_id} at least.
 #' @param selected The nodes that should be initially selected, if any. All selected nodes (and their ancestors) will also be opened, to be visible.
 #' @param opened The nodes that should be initially opened, if any. All ancestor nodes will also be opened.
 #'
@@ -12,8 +12,8 @@
 #'
 #' @examples
 #' tree <- data.frame(id=1:3, parent_id=c(NA, 1, 2))
-#' checkboxTreeInput("foo", "bar", tree=tree)
-#' checkboxTreeInput("foo", "bar", tree=tree, selected=3)
+#' checkboxTreeInput("foo", tree=tree)
+#' checkboxTreeInput("foo", tree=tree, selected=3)
 #' if (interactive()) {
 #' tree <- data.frame(id=1:6, parent_id=c(NA, 1, 2, 2, NA, 1))
 #' ui <- fluidPage(
@@ -29,7 +29,7 @@
 #' }
 checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=NULL) {
   # restore state from a bookmarked state
-  selected <- restoreInput(id=inputId, default=selected)
+  selected <- shiny::restoreInput(id=inputId, default=selected)
 
   # check input
   wrong_ids <- setdiff(selected, tree$id)

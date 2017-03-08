@@ -1,13 +1,12 @@
 #' Get the ancestors of a node
 #'
-#' @param id numeric ids of nodes
-#' @param tree tree data.frame, with columns `id` and `parent_id` at least
+#' @param id numeric ids of nodes.
+#' @param tree a \code{\link{treedf}} data.frame, with columns \code{id} and \code{parent_id} at least.
 #' @param n number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.
 #'
 #' @return A vector of ids of the ancestors of the focus node(s).
 #'
 #' @export
-#'
 #' @examples
 #' tree <- data.frame(id=c(1, 2, 3, 4), parent_id=c(NA, 1, 2, 2))
 #' ancestors(3, tree)
@@ -46,7 +45,6 @@ ancestors <- function(id, tree, n=Inf) {
 #' @return A vector of ids of the children of the focus node(s).
 #'
 #' @export
-#'
 #' @examples
 #' tree <- data.frame(id=c(1, 2, 3, 4), parent_id=c(NA, 1, 2, 2))
 #' children(1, tree)

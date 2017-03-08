@@ -14,5 +14,6 @@ Depends:
     shiny
 Imports:
     htmltools,
-    stats
+    stats,
+    data.tree
 RoxygenNote: 6.0.1
