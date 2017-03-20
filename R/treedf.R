@@ -47,7 +47,7 @@ as.treedf <- function(x, ...) {
 as.treedf.data.frame <- function(x, pathName="pathString", pathDelimiter="/", ...) {
   if (pathName %in% names(x)) {
     # add a root (required for data.tree)
-    x[,pathName] <- paste("###", x[,pathName], sep=pathDelimiter)
+    x[[pathName]] <- paste("###", x[[pathName]], sep=pathDelimiter)
     # convert into data.tree then into treedf
     x <- data.tree::as.Node(x, pathName=pathName, pathDelimiter=pathDelimiter, ...)
     x <- as.treedf.Node(x)
