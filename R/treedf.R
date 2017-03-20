@@ -50,7 +50,7 @@ as.treedf.data.frame <- function(x, pathName="pathString", pathDelimiter="/", ..
     x[,pathName] <- paste("###", x[,pathName], sep=pathDelimiter)
     # convert into data.tree then into treedf
     x <- data.tree::as.Node(x, pathName=pathName, pathDelimiter=pathDelimiter, ...)
-    x <- as.treedf.data.tree(x)
+    x <- as.treedf.Node(x)
     # remove the added root
     root_id <- roots(x)
     x <- x[x$id != root_id,]
@@ -65,7 +65,7 @@ as.treedf.data.frame <- function(x, pathName="pathString", pathDelimiter="/", ..
 
 #' @rdname as.treedf
 #' @export
-as.treedf.data.tree <- function(x, ...) {
+as.treedf.Node <- function(x, ...) {
   # extract all relevant elements for a treedf
   d <- data.frame(
     id=x$Get("pathString"),

@@ -3,7 +3,7 @@
 \name{as.treedf}
 \alias{as.treedf}
 \alias{as.treedf.data.frame}
-\alias{as.treedf.data.tree}
+\alias{as.treedf.Node}
 \alias{is.treedf}
 \title{Coerce to a Tree Data Frame (treedf)}
 \usage{
@@ -12,7 +12,7 @@ as.treedf(x, ...)
 \method{as.treedf}{data.frame}(x, pathName = "pathString",
   pathDelimiter = "/", ...)
 
-\method{as.treedf}{data.tree}(x, ...)
+\method{as.treedf}{Node}(x, ...)
 
 is.treedf(x)
 }
