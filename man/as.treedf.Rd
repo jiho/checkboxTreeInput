@@ -2,6 +2,7 @@
 % Please edit documentation in R/treedf.R
 \name{as.treedf}
 \alias{as.treedf}
+\alias{treedf}
 \alias{as.treedf.data.frame}
 \alias{as.treedf.Node}
 \alias{is.treedf}
@@ -50,7 +51,7 @@ if (interactive()) shinyApp(ui, server)
 # definition of a tree by levels
 x <- data.frame(
        organisation=rep(c("R", "MATLAB"), each=3),
-       department=c("code", "code", "doc", "code", "doc", "maketting"),
+       department=c("code", "code", "doc", "code", "doc", "marketing"),
        team=c("core", "graphics", "help", "central", "help", "bosses")
      )
 x$pathString <- paste(x$organisation, x$department, x$team, sep="/")

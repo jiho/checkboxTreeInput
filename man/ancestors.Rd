@@ -7,9 +7,9 @@
 ancestors(id, tree, n = Inf)
 }
 \arguments{
-\item{id}{numeric ids of nodes}
+\item{id}{numeric ids of nodes.}
 
-\item{tree}{tree data.frame, with columns `id` and `parent_id` at least}
+\item{tree}{a \code{\link{treedf}} data.frame, with columns \code{id} and \code{parent_id} at least.}
 
 \item{n}{number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.}
 }
