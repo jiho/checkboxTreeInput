@@ -9,6 +9,7 @@
 #' @return A list of HTML elements that can be added to a UI definition.
 #'
 #' @export
+#' @import shiny
 #'
 #' @examples
 #' tree <- data.frame(id=1:3, parent_id=c(NA, 1, 2))
