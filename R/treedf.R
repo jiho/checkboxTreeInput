@@ -73,8 +73,7 @@ as.treedf.Node <- function(x, ...) {
     parent_id=x$Get(function(x) {ifelse(is.null(x$parent), NA, x$parent$pathString)}),
     name=x$Get("name"),
     selected=x$Get("selected"),
-    opened=x$Get("opened"),
-    pathString=id
+    opened=x$Get("opened")
   )
   # make ids numeric to speed things up
   d$id <- factor(d$id)
