@@ -61,6 +61,9 @@ as.treedf.data.frame <- function(x, pathName="pathString", pathDelimiter="/", ..
     check_treedf(x)
     class(x) <- c("treedf", class(x))
   }
+  
+  # remove row.names for cleanness
+  row.names(x) <- NULL
   return(x)
 }
 
@@ -86,6 +89,9 @@ as.treedf.Node <- function(x, ...) {
   d <- d[,!sapply(d, function(x) {all(is.na(x))})]
 
   class(d) <- c("treedf", class(d))
+
+  # remove row.names for cleanness
+  row.names(d) <- NULL
   return(d)
 }
 
