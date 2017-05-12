@@ -27,10 +27,11 @@
 #' # definition of a tree by levels
 #' x <- data.frame(
 #'        organisation=rep(c("R", "MATLAB"), each=3),
-#'        department=c("code", "code", "doc", "code", "doc", "marketing"),
-#'        team=c("core", "graphics", "help", "central", "help", "bosses")
+#'        department=c("code", "", "doc", "code", "doc", "marketing"),
+#'        team=c("core", "", "", "central", "help", "")
 #'      )
 #' x$pathString <- paste(x$organisation, x$department, x$team, sep="/")
+#' x$pathString <- gsub("/*$", "", x$pathString)
 #' x <- as.treedf(x)
 #' ui <- fluidPage(checkboxTreeInput(inputId="tree", tree=x))
 #' if (interactive()) shinyApp(ui, server)
