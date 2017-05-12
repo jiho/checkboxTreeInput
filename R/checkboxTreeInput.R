@@ -85,14 +85,12 @@ checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=N
 # @param x a line of \code{tree}
 # @param inputId
 treeCheckboxInput <- function(x, inputId) {
-  choices <- x$id
-  names(choices) <- x$name
   if (x$selected) {
     selected <- x$id
   } else {
     selected <- NULL
   }
-  shiny:::generateOptions(inputId, choices=choices, selected=selected, inline=FALSE, type="checkbox")
+  shiny:::generateOptions(inputId, choiceNames=as.character(x$name), choiceValues=x$id, selected=selected, inline=FALSE, type="checkbox")
 }
 
 # Create a <li> item, with a nested, collapsable <ul> item if necessary
