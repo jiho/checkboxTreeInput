@@ -71,7 +71,7 @@ checkboxTreeInput <- function(inputId, label=NULL, tree, selected=NULL, opened=N
   # Create the input tag
   inputTag <- shiny::tags$div(
     id=inputId, class="form-group shiny-input-checkboxtree shiny-input-checkboxgroup shiny-input-container",
-    shiny:::controlLabel(inputId, label),
+    shiny:::shinyInputLabel(inputId, label),
     shiny::tags$ul(
       # iterate from the roots
       lapply(roots(tree), tree_li, tree=tree, inputId=inputId)
